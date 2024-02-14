@@ -1,38 +1,225 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
-body {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+header {
   font-family: "Roboto", sans-serif;
+}
+
+body {
   height: 100vh;
   width: 100vw;
+  position: relative;
+}
+
+header {
+  width: 100%;
+  background-color: #ece6d5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 128px;
+  padding: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header img {
+  max-height: 164px;
 }
 
 h1 {
   text-transform: uppercase;
+  font-size: 42px;
+  color: #483d56;
 }
 
-.contain {
-  max-width: 700px;
-  border: 2px solid red;
+nav {
+  margin-top: 32px;
+}
+
+nav ul {
+  list-style-type: none;
   display: flex;
+  justify-content: center; /* Center horizontally */
+}
+
+nav li {
+  margin: 0 10px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: color 0.3s ease, letter-spacing 0.3s ease; /* Add transition for letter spacing */
+  position: relative; /* Position the dot relative to the link */
+}
+
+nav a:hover {
+  color: #6f6192;
+  letter-spacing: 1.2px;
+}
+
+.cta-button a {
+  background-color: #fff;
+  color: #6f6192;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 2px solid #6f6192;
+  transition: ease-in-out 0.5s;
+}
+
+.cta-button a:hover {
+  background-color: #6f6192;
+  color: #fff;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ece6d5;
+  padding: 10px;
+  display: flex;
+  gap: 32px;
   justify-content: center;
+  align-items: center;
+}
+
+footer img {
+  width: 128px; /* Changed width to 128px */
+  margin-right: 10px;
+}
+
+.footer_text {
+  color: #999;
+}
+
+.footer-icons {
+  display: flex;
+}
+
+.footer-icons a {
+  margin-right: 10px;
+  color: #6f6192;
+  font-size: 32px;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.footer-icons a:hover {
+  color: #483d56;
+  transform: rotate(-24deg);
+}
+
+main {
+  padding: 20px; /* Add some padding */
+  max-width: 1500px; /* Set maximum width */
+  min-width: 500px; /* Set minimum width */
+  width: 90%; /* Take up 90% of the viewport width */
+  margin: 0 auto;
+  margin-top: 80px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+
+/* Add media queries for responsiveness */
+@media screen and (max-width: 1500px) {
+  main {
+    width: 95%; /* Adjust width for smaller screens */
+  }
+}
+
+@media screen and (max-width: 500px) {
+  main {
+    width: 100%; /* Adjust width for very small screens */
+  }
+}
+
+#bid,
+#sold {
+  display: flex;
+  justify-content: space-between; /* Space items evenly */
+}
+
+.card,
+.card_2 {
+  flex: 1; /* Each card takes up equal space */
+  padding: 20px; /* Add some padding */
+}
+
+.card {
+  background-color: #f0f0f0; /* Add background color for card */
+  border-radius: 8px; /* Add border radius for card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow for card */
+}
+
+.card_2 {
+  display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 24px 0;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  font-size: 24px;
+  font-weight: bold;
+  background-color: #d3cfe5; /* Light background color */
+  gap: 12px;
+  border: 2px solid red;
 }
 
-.box {
+.p_card_2 {
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+.note {
+  font-style: italic;
+  opacity: 0.6; /* Adjust opacity value as needed */
+}
+
+#profit {
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.input-container {
-  margin: 10px;
+.card_profit {
+  flex: 1;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f0f0f0; /* Default background color */
+  color: #333; /* Default text color */
 }
 
-input[type="number"],
-input[type="text"] {
-  padding: 8px;
+/* Change background color and text color for positive values */
+.card_profit.positive {
+  background-color: #8bc34a; /* Green */
+  color: #fff;
+}
+
+/* Change background color and text color for negative values */
+.card_profit.negative {
+  background-color: #ef5350; /* Red */
+  color: #fff;
+}
+
+.card h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.card input[type="text"] {
+  width: 100%;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Optional: Style placeholder text */
+.card input[type="text"]::placeholder {
+  color: #999;
 }

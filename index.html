@@ -4,22 +4,74 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>auctioncalculator</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="contain">
+    <header>
       <img src="./img/logo.png" alt="logo" />
-      <h1>Auction to eBay Calculator</h1>
-      <div class="box">
-        <div class="input-container">
-          <label for="final-bid">Bid:</label>
-          <input type="number" id="final-bid" name="final-bid" />
+      <h1 class="title_header">Auction To eBay Calculator</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="list.html">Saved</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="cta-button">
+          <a
+            href="https://www.ebay.co.uk/str/ionc"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Ebay Shop</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <section id="bid">
+        <div class="card">
+          <h2>Auction Bid</h2>
+          <input type="text" placeholder="Enter bid amount" />
         </div>
-        <div class="input-container">
-          <label for="final-price">Real Cost:</label>
-          <input type="text" id="final-price" name="final-price" readonly />
+        <div class="card_2">
+          <p class="p_card_2">
+            Real Price <span class="note">(Adds 25% to Hammer + 20% VAT)</span>
+          </p>
+          <h2>PRICE</h2>
         </div>
+      </section>
+      <section id="sold">
+        <div class="card">
+          <h2>Ebay price after fees</h2>
+          <input type="text" placeholder="Enter sold amount" />
+        </div>
+        <div class="card_2"></div>
+      </section>
+      <section id="profit">
+        <div class="card_profit positive">£</div>
+      </section>
+    </main>
+
+    <footer>
+      <img src="./img/logo.png" alt="logo" width="128" />
+      <div class="footer-icons">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a
+          href="https://www.ebay.co.uk/str/ionc"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><i class="fab fa-ebay"></i
+        ></a>
       </div>
-    </div>
+      <p class="footer_text">All rights reserved ioNC</p>
+    </footer>
+    <script src="calc.js"></script>
+    <script src="profit.js"></script>
+    <!-- Link the JavaScript file -->
   </body>
 </html>
