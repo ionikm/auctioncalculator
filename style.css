@@ -14,7 +14,7 @@ header {
 body {
   height: 100vh;
   width: 100vw;
-  position: relative;
+  /* position: relative; */
 }
 
 header {
@@ -45,7 +45,7 @@ nav {
 nav ul {
   list-style-type: none;
   display: flex;
-  justify-content: center; /* Center horizontally */
+  justify-content: center;
 }
 
 nav li {
@@ -57,8 +57,8 @@ nav a {
   color: #333;
   text-transform: uppercase;
   font-weight: bold;
-  transition: color 0.3s ease, letter-spacing 0.3s ease; /* Add transition for letter spacing */
-  position: relative; /* Position the dot relative to the link */
+  transition: color 0.3s ease, letter-spacing 0.3s ease;
+  position: relative;
 }
 
 nav a:hover {
@@ -81,9 +81,6 @@ nav a:hover {
 }
 
 footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
   width: 100%;
   background-color: #ece6d5;
   padding: 10px;
@@ -93,8 +90,16 @@ footer {
   align-items: center;
 }
 
+@media screen and (max-height: 768px) {
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+}
+
 footer img {
-  width: 128px; /* Changed width to 128px */
+  width: 128px;
   margin-right: 10px;
 }
 
@@ -119,56 +124,58 @@ footer img {
 }
 
 main {
-  padding: 20px; /* Add some padding */
-  max-width: 1500px; /* Set maximum width */
-  min-width: 500px; /* Set minimum width */
-  width: 90%; /* Take up 90% of the viewport width */
+  padding: 20px;
+  max-width: 1500px;
+  min-width: 500px;
+  width: 90%;
   margin: 0 auto;
   margin-top: 80px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 1; /* This will push the footer to the bottom */
+  max-height: 400px;
 }
 
 /* Add media queries for responsiveness */
 @media screen and (max-width: 1500px) {
   main {
-    width: 95%; /* Adjust width for smaller screens */
+    width: 95%;
   }
 }
 
 @media screen and (max-width: 500px) {
   main {
-    width: 100%; /* Adjust width for very small screens */
+    width: 100%;
   }
 }
 
 #bid,
 #sold {
   display: flex;
-  justify-content: space-between; /* Space items evenly */
+  justify-content: space-between;
 }
 
 .card,
 .card_2 {
-  flex: 1; /* Each card takes up equal space */
-  padding: 20px; /* Add some padding */
+  flex: 1;
+  padding: 20px;
 }
 
 .card {
-  background-color: #f0f0f0; /* Add background color for card */
-  border-radius: 8px; /* Add border radius for card */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow for card */
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card_2 {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center vertically */
-  align-items: center; /* Center horizontally */
+  justify-content: center;
+  align-items: center;
   font-size: 24px;
   font-weight: bold;
-  background-color: #d3cfe5; /* Light background color */
+  background-color: #d3cfe5;
   gap: 12px;
-  border: 2px solid red;
+  border: 1px solid #483d56;
 }
 
 .p_card_2 {
@@ -178,11 +185,12 @@ main {
 
 .note {
   font-style: italic;
-  opacity: 0.6; /* Adjust opacity value as needed */
+  opacity: 0.6;
 }
 
 #profit {
   display: flex;
+  position: relative;
 }
 
 .card_profit {
@@ -190,19 +198,20 @@ main {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #f0f0f0; /* Default background color */
-  color: #333; /* Default text color */
+  background-color: #f0f0f0;
+  color: #333;
+  font-size: 48px;
+  display: flex;
+  justify-content: center;
 }
 
-/* Change background color and text color for positive values */
 .card_profit.positive {
-  background-color: #8bc34a; /* Green */
+  background-color: #8bc34a;
   color: #fff;
 }
 
-/* Change background color and text color for negative values */
 .card_profit.negative {
-  background-color: #ef5350; /* Red */
+  background-color: #ef5350;
   color: #fff;
 }
 
@@ -219,7 +228,150 @@ main {
   font-size: 16px;
 }
 
-/* Optional: Style placeholder text */
 .card input[type="text"]::placeholder {
   color: #999;
+}
+
+.ebay_final {
+  font-size: 40px;
+}
+
+.button-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.button-wrapper button {
+  width: 100px;
+  height: 49px;
+  border: 1px solid #303030;
+  background-color: #6f6192;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-wrapper button:hover {
+  background-color: #483d56;
+}
+
+.saved_list_title {
+  text-align: center;
+  margin: 64px;
+}
+
+.saved {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 64px;
+  display: grid; /* Change to grid */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(250px, 1fr)
+  ); /* Adjust according to your needs */
+  gap: 16px;
+  justify-content: center;
+  position: relative;
+}
+
+.saved_title {
+  margin-bottom: 20px;
+}
+
+.saved_1 {
+  /* Remove width and margin */
+  padding: 20px;
+  border: 1px solid #483d56;
+  background-color: #ece6d5;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.saved_1 input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #6f6192;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.saved_1 .table {
+  display: flex;
+  flex-direction: column;
+}
+
+.saved_1 .table-row {
+  display: flex;
+  gap: 2px;
+  border-bottom: 1px solid #6f6192; /* Add border bottom to each row */
+}
+
+.saved_1 .table-cell {
+  flex: 1;
+  padding: 10px;
+}
+
+.saved_1 .table-cell:nth-child(1) {
+  color: #6f6192;
+  font-weight: bold;
+  text-align: right;
+}
+
+.saved_1 .table-cell:nth-child(2) {
+  color: #483d56;
+  font-style: italic;
+  border-left: 1px solid #6f6192; /* Add border left to each cell */
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.unlock {
+  position: absolute;
+  right: -10px;
+  top: -22px;
+  font-size: 24px;
+  color: #fff;
+  background-color: #6f6192;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.unlock:hover {
+  background-color: #303030;
+}
+
+.lockedinput {
+  background-color: #483d56;
+  color: #f2f2f2;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.locked {
+  background-color: #d3cfe5;
+}
+
+.exportcsv {
+  padding: 20px;
+  background-color: #483d56;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #ededed;
+}
+
+.exportcsv:hover {
+  cursor: pointer;
 }

@@ -10,68 +10,101 @@
     />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
-    <header>
-      <img src="./img/logo.png" alt="logo" />
-      <h1 class="title_header">Auction To eBay Calculator</h1>
-    </header>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="list.html">Saved</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li class="cta-button">
+  <div class="container">
+    <body>
+      <header>
+        <img src="./img/logo.png" alt="logo" />
+        <h1 class="title_header">Auction To eBay Calculator</h1>
+      </header>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li class="cta-button">
+            <a
+              href="https://www.ebay.co.uk/str/ionc"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Ebay Shop</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <main>
+        <section id="bid">
+          <div class="card">
+            <h2>Auction Bid</h2>
+            <input type="text" placeholder="Enter bid amount" />
+          </div>
+          <div class="card_2">
+            <p class="p_card_2">
+              Real Price
+              <span class="note">(Adds 25% to Hammer + 20% VAT)</span>
+            </p>
+            <h2>0</h2>
+          </div>
+        </section>
+        <section id="sold">
+          <div class="card" id="card_no2">
+            <h2>Ebay price after fees</h2>
+            <input type="text" placeholder="Enter sold amount" />
+          </div>
+          <div class="card_2">
+            <p class="p_card_2">Ebay after fees(13%+2%add+3.99 post)</p>
+            <span class="ebay_final">0</span>
+          </div>
+        </section>
+        <section id="profit">
+          <div class="card_profit">
+            £&nbsp<span class="totalprofit">0</span>
+            <div class="button-wrapper">
+              <button id="addButton">Add</button>
+              <button id="resetButton">Reset</button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <h1 class="saved_list_title">Saved list</h1>
+
+      <div class="saved">
+        <!-- <div class="saved_1">
+          <button class="unlock">X</button>
+          <input id="titleInput" type="text" placeholder="Title" />
+          <div class="table">
+            <div class="table-row">
+              <div class="table-cell">Bid:</div>
+              <div class="table-cell" id="bidValue"></div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">Ebay Price:</div>
+              <div class="table-cell" id="ebayPriceValue"></div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">Profit:</div>
+              <div class="table-cell" id="profitValue"></div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+
+      <footer>
+        <img src="./img/logo.png" alt="logo" width="128" />
+        <div class="footer-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
           <a
             href="https://www.ebay.co.uk/str/ionc"
             target="_blank"
             rel="noopener noreferrer"
-            >Ebay Shop</a
-          >
-        </li>
-      </ul>
-    </nav>
-    <main>
-      <section id="bid">
-        <div class="card">
-          <h2>Auction Bid</h2>
-          <input type="text" placeholder="Enter bid amount" />
+            ><i class="fab fa-ebay"></i
+          ></a>
         </div>
-        <div class="card_2">
-          <p class="p_card_2">
-            Real Price <span class="note">(Adds 25% to Hammer + 20% VAT)</span>
-          </p>
-          <h2>PRICE</h2>
-        </div>
-      </section>
-      <section id="sold">
-        <div class="card">
-          <h2>Ebay price after fees</h2>
-          <input type="text" placeholder="Enter sold amount" />
-        </div>
-        <div class="card_2"></div>
-      </section>
-      <section id="profit">
-        <div class="card_profit positive">£</div>
-      </section>
-    </main>
-
-    <footer>
-      <img src="./img/logo.png" alt="logo" width="128" />
-      <div class="footer-icons">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-github"></i></a>
-        <a
-          href="https://www.ebay.co.uk/str/ionc"
-          target="_blank"
-          rel="noopener noreferrer"
-          ><i class="fab fa-ebay"></i
-        ></a>
-      </div>
-      <p class="footer_text">All rights reserved ioNC</p>
-    </footer>
-    <script src="calc.js"></script>
-    <script src="profit.js"></script>
-    <!-- Link the JavaScript file -->
-  </body>
+        <p class="footer_text">All rights reserved ioNC</p>
+      </footer>
+      <script src="./calc.js"></script>
+      <script src="./card.js"></script>
+    </body>
+  </div>
 </html>
