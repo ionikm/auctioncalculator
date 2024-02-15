@@ -11,11 +11,11 @@
 //   });
 // });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const unlockButton = document.querySelector(".unlock");
+// document.addEventListener("DOMContentLoaded", function () {
+//   const unlockButton = document.querySelector(".unlock");
 
-  unlockButton.addEventListener("click", function () {
-    const saved_1Div = unlockButton.parentElement; // Get the parent element of the unlock button
-    saved_1Div.remove(); // Remove the saved_1 div from the DOM
-  });
-});
+//   unlockButton.addEventListener("click", function () {
+//     const saved_1Div = unlockButton.parentElement; // Get the parent element of the unlock button
+//     saved_1Div.remove(); // Remove the saved_1 div from the DOM
+//   });
+// });

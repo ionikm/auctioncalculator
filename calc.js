@@ -1,3 +1,26 @@
+// Function to calculate auction price
+function calculateAuctionPrice(inputValue) {
+  if (!isNaN(inputValue)) {
+    return (
+      inputValue +
+      inputValue * 0.25 +
+      inputValue * 0.2 +
+      inputValue * 0.25 * 0.2
+    ).toFixed(2);
+  }
+  return "PRICE";
+}
+
+// Function to calculate eBay final price
+function calculateEbayFinalPrice(inputValue) {
+  if (!isNaN(inputValue)) {
+    return (inputValue - inputValue * 0.13 - inputValue * 0.02 - 3.99).toFixed(
+      2
+    );
+  }
+  return "";
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const resetButton = document.getElementById("resetButton");
   const addButton = document.getElementById("addButton");
@@ -5,32 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const userInput = document.querySelector(".card input[type='text']");
   const ebayInput = document.querySelector("#card_no2 input[type='text']");
-
-  // Function to calculate auction price
-  function calculateAuctionPrice(inputValue) {
-    if (!isNaN(inputValue)) {
-      return (
-        inputValue +
-        inputValue * 0.25 +
-        inputValue * 0.2 +
-        inputValue * 0.25 * 0.2
-      ).toFixed(2);
-    }
-    return "PRICE";
-  }
-
-  // Function to calculate eBay final price
-  function calculateEbayFinalPrice(inputValue) {
-    if (!isNaN(inputValue)) {
-      return (
-        inputValue -
-        inputValue * 0.13 -
-        inputValue * 0.02 -
-        3.99
-      ).toFixed(2);
-    }
-    return "";
-  }
 
   // Function to update profit
   function updateProfit() {
@@ -46,31 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
       cardProfit.classList.remove("positive", "negative");
       cardProfit.classList.add(profit > 0 ? "positive" : "negative");
     }
-  }
-
-  // Function to export card values to CSV
-  function exportToCSV() {
-    const cards = document.querySelectorAll(".saved_1");
-    let csvContent = "data:text/csv;charset=utf-8,";
-    csvContent += "Title,Bid,eBay Price,Profit\n"; // CSV header
-    cards.forEach((card) => {
-      const title = card.querySelector("input[type='text']").value;
-      const bid = card.querySelector(".table-cell:nth-child(2)").textContent;
-      const ebayPrice = card.querySelector(
-        ".table-cell:nth-child(4)"
-      ).textContent;
-      const profit = card.querySelector(".totalprofit").textContent;
-      csvContent += `${title},${bid},${ebayPrice},${profit}\n`; // CSV row
-    });
-
-    // Create a link element to trigger the download
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "cards.csv");
-    document.body.appendChild(link); // Append the link to the body
-    link.click(); // Trigger the download
-    document.body.removeChild(link); // Remove the link from the body
   }
 
   // Event listeners
@@ -175,4 +147,47 @@ document.addEventListener("DOMContentLoaded", function () {
       ); // Insert after .saved container
     }
   });
+
+  // Event listener for unlock button
+  document.addEventListener("click", function (event) {
+    if (event.target.classList.contains("unlock")) {
+      const saved_1Div = event.target.parentElement; // Get the parent element of the unlock button
+      saved_1Div.remove(); // Remove the saved_1 div from the DOM
+    }
+  });
 });
+// Function to export card values to CSV
+function exportToCSV() {
+  const cards = document.querySelectorAll(".saved_1");
+  if (cards.length === 0) {
+    console.log("No cards to export.");
+    return;
+  }
+
+  let csvContent = "data:text/csv;charset=utf-8,";
+  csvContent += "Title,Bid,eBay Price,Profit\n"; // CSV header
+
+  cards.forEach((card) => {
+    const titleInput = card.querySelector("input[type='text']");
+    const title = titleInput ? titleInput.value : "";
+
+    const bidCell = card.querySelector(".table-cell:nth-child(2)");
+    const bid = bidCell ? bidCell.textContent.trim() : "";
+
+    const ebayPriceCell = card.querySelector(".card_2 .ebay_final");
+    const ebayPrice = ebayPriceCell ? ebayPriceCell.textContent.trim() : "";
+
+    const profitCell = card.querySelector(".totalprofit");
+    const profit = profitCell ? profitCell.textContent.trim() : "";
+
+    csvContent += `${title},${bid},${ebayPrice},${profit}\n`; // CSV row
+  });
+
+  const encodedUri = encodeURI(csvContent);
+  const link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", "cards.csv");
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
