@@ -14,7 +14,6 @@ header {
 body {
   height: 100vh;
   width: 100vw;
-  /* position: relative; */
 }
 
 header {
@@ -88,14 +87,9 @@ footer {
   gap: 32px;
   justify-content: center;
   align-items: center;
-}
-
-@media screen and (max-height: 768px) {
-  footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-  }
+  position: absolute;
+  bottom: 0;
+  border-top: 12px solid #6f6192;
 }
 
 footer img {
@@ -335,6 +329,7 @@ main {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .unlock {
