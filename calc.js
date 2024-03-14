@@ -126,14 +126,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Update value cells with corresponding values
     const valueCells = newDiv.querySelectorAll(".table-cell:nth-child(2)");
-    valueCells[0].textContent = calculateAuctionPrice(
-      parseFloat(userInput.value)
-    );
-    valueCells[1].textContent = calculateEbayFinalPrice(
-      parseFloat(ebayInput.value)
-    );
-    valueCells[2].textContent =
-      document.querySelector(".totalprofit").textContent;
+    const auctionPrice = calculateAuctionPrice(parseFloat(userInput.value));
+    const ebayFinalPrice = calculateEbayFinalPrice(parseFloat(ebayInput.value));
+    const profit = ebayFinalPrice - auctionPrice;
+
+    valueCells[0].textContent = auctionPrice;
+    valueCells[1].textContent = ebayFinalPrice;
+    valueCells[2].textContent = profit.toFixed(2);
+
+    // Store eBay price and profit as data attributes
+    newDiv.dataset.ebayPrice = ebayFinalPrice;
+    newDiv.dataset.profit = profit;
 
     // Remove previous export button if it exists
     const previousExportButton = document.querySelector(".exportcsv");
@@ -178,11 +181,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const bidCell = card.querySelector(".table-cell:nth-child(2)");
       const bid = bidCell ? bidCell.textContent.trim() : "";
 
-      const ebayPriceCell = card.querySelector(".card_2 .ebay_final");
-      const ebayPrice = ebayPriceCell ? ebayPriceCell.textContent.trim() : "";
-
-      const profitCell = card.querySelector(".totalprofit");
-      const profit = profitCell ? profitCell.textContent.trim() : "";
+      const ebayPrice = card.dataset.ebayPrice || ""; // Retrieve eBay price from data attribute
+      const profit = card.dataset.profit || ""; // Retrieve profit from data attribute
 
       csvContent += `${title},${bid},${ebayPrice},${profit}\n`; // CSV row
     });
