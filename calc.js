@@ -135,17 +135,21 @@ document.addEventListener("DOMContentLoaded", function () {
     valueCells[2].textContent =
       document.querySelector(".totalprofit").textContent;
 
-    // Append export button after generating all cards
-    if (!exportButton) {
-      exportButton = document.createElement("button");
-      exportButton.textContent = "Export to CSV";
-      exportButton.classList.add("exportcsv"); // Add the exportcsv class
-      exportButton.addEventListener("click", exportToCSV);
-      savedContainer.parentNode.insertBefore(
-        exportButton,
-        savedContainer.nextSibling
-      ); // Insert after .saved container
+    // Remove previous export button if it exists
+    const previousExportButton = document.querySelector(".exportcsv");
+    if (previousExportButton) {
+      savedContainer.removeChild(previousExportButton);
     }
+
+    // Append export button after generating all cards
+    exportButton = document.createElement("div");
+    exportButton.classList.add("saved_1");
+    exportButton.classList.add("exportcsv");
+    exportButton.innerHTML = `<button class="exportcsv">Export to CSV</button>`;
+    savedContainer.appendChild(exportButton);
+
+    // Re-attach event listener for export button
+    exportButton.addEventListener("click", exportToCSV);
   });
 
   // Event listener for unlock button
@@ -155,39 +159,40 @@ document.addEventListener("DOMContentLoaded", function () {
       saved_1Div.remove(); // Remove the saved_1 div from the DOM
     }
   });
-});
-// Function to export card values to CSV
-function exportToCSV() {
-  const cards = document.querySelectorAll(".saved_1");
-  if (cards.length === 0) {
-    console.log("No cards to export.");
-    return;
+
+  // Function to export card values to CSV
+  function exportToCSV() {
+    const cards = document.querySelectorAll(".saved_1");
+    if (cards.length === 0) {
+      console.log("No cards to export.");
+      return;
+    }
+
+    let csvContent = "data:text/csv;charset=utf-8,";
+    csvContent += "Title,Bid,eBay Price,Profit\n"; // CSV header
+
+    cards.forEach((card) => {
+      const titleInput = card.querySelector("input[type='text']");
+      const title = titleInput ? titleInput.value : "";
+
+      const bidCell = card.querySelector(".table-cell:nth-child(2)");
+      const bid = bidCell ? bidCell.textContent.trim() : "";
+
+      const ebayPriceCell = card.querySelector(".card_2 .ebay_final");
+      const ebayPrice = ebayPriceCell ? ebayPriceCell.textContent.trim() : "";
+
+      const profitCell = card.querySelector(".totalprofit");
+      const profit = profitCell ? profitCell.textContent.trim() : "";
+
+      csvContent += `${title},${bid},${ebayPrice},${profit}\n`; // CSV row
+    });
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "cards.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
-
-  let csvContent = "data:text/csv;charset=utf-8,";
-  csvContent += "Title,Bid,eBay Price,Profit\n"; // CSV header
-
-  cards.forEach((card) => {
-    const titleInput = card.querySelector("input[type='text']");
-    const title = titleInput ? titleInput.value : "";
-
-    const bidCell = card.querySelector(".table-cell:nth-child(2)");
-    const bid = bidCell ? bidCell.textContent.trim() : "";
-
-    const ebayPriceCell = card.querySelector(".card_2 .ebay_final");
-    const ebayPrice = ebayPriceCell ? ebayPriceCell.textContent.trim() : "";
-
-    const profitCell = card.querySelector(".totalprofit");
-    const profit = profitCell ? profitCell.textContent.trim() : "";
-
-    csvContent += `${title},${bid},${ebayPrice},${profit}\n`; // CSV row
-  });
-
-  const encodedUri = encodeURI(csvContent);
-  const link = document.createElement("a");
-  link.setAttribute("href", encodedUri);
-  link.setAttribute("download", "cards.csv");
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
+});

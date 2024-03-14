@@ -286,6 +286,7 @@ main {
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
+  margin-bottom: 64px;
 }
 
 .saved_1 input[type="text"] {
@@ -363,10 +364,21 @@ main {
 .exportcsv {
   padding: 20px;
   background-color: #483d56;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   color: #ededed;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: ease-in 0.3s;
 }
 
 .exportcsv:hover {
   cursor: pointer;
+  color: #ccc;
+  letter-spacing: 1.2px;
+  font-size: 20px;
+}
+
+#addButton {
+  border: none;
 }
